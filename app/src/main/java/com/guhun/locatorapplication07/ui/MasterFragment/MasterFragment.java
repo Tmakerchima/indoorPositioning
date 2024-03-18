@@ -143,26 +143,26 @@ public class MasterFragment extends Fragment {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, listText);
 //                adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                 binding.mapsList.setAdapter(adapter);
-                binding.mapsList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        selectedMap = mapModels.get(position);
-                        if (selectedMap.getMapUrl() != null) {
-                            GetBitMap.getHttpBitmap(selectedMap.getMapUrl(), new GetBitMap.Callback() {
-                                @Override
-                                public void onSuccess(Bitmap bitmap) {
-                                    binding.siteImg.setImageBitmap(bitmap);
-                                    binding.setShowView(View.VISIBLE);
-                                    getSiteList(selectedMap.getMapId());
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
+//                binding.mapsList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                        selectedMap = mapModels.get(position);
+//                        if (selectedMap.getMapUrl() != null) {
+//                            GetBitMap.getHttpBitmap(selectedMap.getMapUrl(), new GetBitMap.Callback() {
+//                                @Override
+//                                public void onSuccess(Bitmap bitmap) {
+//                                    binding.siteImg.setImageBitmap(bitmap);
+//                                    binding.setShowView(View.VISIBLE);
+//                                    getSiteList(selectedMap.getMapId());
+//                                }
+//                            });
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                    }
+//                });
             }
 
             @Override

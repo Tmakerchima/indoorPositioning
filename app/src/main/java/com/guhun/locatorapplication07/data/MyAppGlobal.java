@@ -19,8 +19,14 @@ public class MyAppGlobal extends Application {
     public void onCreate()
     {
         super.onCreate();
-        imgUrl = "https://wifimap-1304806518.cos.ap-shanghai.myqcloud.com/"; // 图片服务器地址
-        serverUrl = "http://121.4.217.63:8080/locator_server"; // 服务器地址
+        imgUrl = "https://wifilocation-1302313431.cos.ap-shanghai.myqcloud.com/"; // 图片服务器地址
+//        serverUrl = "http://121.4.217.63:8080/locator_server"; // 服务器地址
+//        serverUrl = "http://127.0.0.1:80/locator_server"; // 服务器地址
+//        serverUrl = "http://192.168.128.1:8888/locator_server"; // 服务器地址
+//        serverUrl = "http://192.168.169.1:8888/locator_server"; // 服务器地址
+//        serverUrl = "http://172.24.128.1:8888/locator_server"; // 服务器地址
+//        serverUrl = "http://10.17.4.154:8888/locator_server"; // 服务器地址
+        serverUrl = "https://wifilocation-release.lecangs.com/locator_server"; // 服务器地址
     }
     public String getServerUrl() {
         return serverUrl;

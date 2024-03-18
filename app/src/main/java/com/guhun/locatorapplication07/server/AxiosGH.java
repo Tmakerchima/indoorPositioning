@@ -178,6 +178,7 @@ public class AxiosGH {
                 connection.setUseCaches(useCaches);//缓存
                 //设置请求体的类型是文本类型
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+//                connection.setRequestProperty("Content-Type", "application/json");
                 //设置请求体的长度
                 connection.setRequestProperty("Content-Length", String.valueOf(data.getBytes().length));
                 if (header.get("Content-Type")!=null){

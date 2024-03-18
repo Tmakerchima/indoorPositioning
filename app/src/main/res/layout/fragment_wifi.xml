@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="position"
+            type="com.guhun.locatorapplication07.data.model.PositionModel" />
+
+        <variable
+            name="edit"
+            type="boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +20,66 @@
         android:background="@color/backColor"
         android:padding="30dp"
         tools:context=".ui.WifiFragment.WifiFragment">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/positionXy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="50dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="行号："
+                tools:ignore="NestedWeights" />
+
+            <EditText
+                android:id="@+id/tx_positionX"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:enabled="true"
+                android:hint="无" />
+<!--                android:text="@={position.xLine}"-->
+<!--                />-->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="列号："
+                tools:ignore="NestedWeights" />
+
+            <EditText
+                android:id="@+id/tx_positionY"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:enabled="true"
+                android:hint="无" />
+<!--                android:text="@={position.yLine}" -->
+<!--                />-->
+
+
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="录入数据信息"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linearLayout5"
@@ -24,32 +91,43 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="30dp">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="获取指纹信息"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <Button-->
+<!--                android:id="@+id/button2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="获取指纹信息"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <Space
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="扫描时间间隔：10s" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView11"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="扫描时间间隔：10s" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/button3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="录入数据信息"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="指纹信息(仅获取前10个信号信息)："
+            android:layout_marginTop="30dp"
+            android:text="指纹信息(仅获取前30个信号信息)："
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
             tools:layout_editor_absoluteX="30dp" />
 

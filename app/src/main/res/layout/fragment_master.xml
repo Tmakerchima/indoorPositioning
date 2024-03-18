@@ -48,15 +48,15 @@
                     tools:ignore="MissingConstraints" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/siteImg"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginTop="20dp"
-                android:background="@android:drawable/ic_menu_mapmode"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+<!--            <ImageView-->
+<!--                android:id="@+id/siteImg"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="300dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@android:drawable/ic_menu_mapmode"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
 
             <LinearLayout
                 android:id="@+id/linearLayout3"

@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdk 29
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "com.guhun.locatorapplication07"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdk 28
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -41,6 +41,26 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation files('libs\\fastjson-1.2.75.jar')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation 'com.android.volley:volley:1.2.1'
+
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+    implementation 'org.java-websocket:Java-WebSocket:1.5.2'
+
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
