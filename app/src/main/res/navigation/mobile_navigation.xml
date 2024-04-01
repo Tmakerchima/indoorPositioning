@@ -29,10 +29,32 @@
         android:label="查看位置"
         tools:layout="@layout/fragment_site" />
     <fragment
+        android:id="@+id/nav_site_lab"
+        android:name="com.guhun.locatorapplication07.ui.SiteFragment.SiteFragment"
+        android:label="实验室定位"
+        tools:layout="@layout/fragment_site" />
+    <fragment
+        android:id="@+id/nav_site_institute"
+        android:name="com.guhun.locatorapplication07.ui.SiteFragment.SiteFragment"
+        android:label="研究院定位"
+        tools:layout="@layout/fragment_site" />
+
+
+    <fragment
         android:id="@+id/nav_wifi"
         android:name="com.guhun.locatorapplication07.ui.WifiFragment.WifiFragment"
         android:label="指纹统计"
         tools:layout="@layout/fragment_wifi" />
+    <fragment
+        android:id="@+id/nav_lab_map"
+        android:name="com.guhun.locatorapplication07.ui.WifiFragment.MapFragment.LabMapFragment"
+        android:label="实验室指纹统计"
+        tools:layout="@layout/fragment_wifi_lab" />
+    <fragment
+        android:id="@+id/nav_institute_map"
+        android:name="com.guhun.locatorapplication07.ui.WifiFragment.MapFragment.InstituteMapFragment"
+        android:label="研究院指纹统计"
+        tools:layout="@layout/fragment_wifi_institute" />
     <fragment
         android:id="@+id/nav_about"
         android:name="com.guhun.locatorapplication07.ui.AboutFragment.AboutFragment"

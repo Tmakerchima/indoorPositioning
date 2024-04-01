@@ -17,6 +17,7 @@ public class WifiDbmModel {
     private String wifiName;
     private Double wifiDbm;
     private String macAddress;
+    private String updateTime;
 
 
     public Long getId() {
@@ -97,5 +98,13 @@ public class WifiDbmModel {
 
     public void setMapId(Integer mapId) {
         this.mapId = mapId;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 }

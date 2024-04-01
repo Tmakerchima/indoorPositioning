@@ -83,6 +83,8 @@ public class SiteFragment extends Fragment {
 
     private boolean isTimerRunning = false;
 
+    private int mapId = 10;
+
 
     private static final String WS_URL = "wss://wifilocation-release.lecangs.com/locator_server/data-websocket";
     private WebSocketClient webSocketClient;
@@ -116,7 +118,7 @@ public class SiteFragment extends Fragment {
     }
     private void startTimer() {
         isTimerRunning = true;
-        handler.postDelayed(runnable, 1000); // 延迟0.5秒后执行
+        handler.postDelayed(runnable, 1000); // 延迟3秒后执行
     }
 
     private void stopTimer() {
@@ -129,8 +131,8 @@ public class SiteFragment extends Fragment {
         @Override
         public void run() {
             imgInit();
-            location(8,0);
-            handler.postDelayed(this, 500); // 0.5秒后再次执行
+            location(mapId,0);
+            handler.postDelayed(this, 1000); // 3秒后再次执行
         }
     };
 
@@ -138,9 +140,11 @@ public class SiteFragment extends Fragment {
 
     public void location(int mapId,int siteId){
         wifiManagerGH = new WifiManagerGH(getContext());
-        wifiManagerGH.initSignalList(30,0);
+        wifiManagerGH.initSignalList(50,0);
 
         ArrayList<WifiSignalModel> wifilist = wifiManagerGH.getSignalList();
+//        List<WifiSignalModel> filteredMacAddresses = filterWifiSignalModels(wifilist);
+
 
         List<WifiDbmModel> wifiDbmModelList = new ArrayList<>();
         for(WifiSignalModel wifiSignalModel:wifilist){
@@ -220,7 +224,7 @@ public class SiteFragment extends Fragment {
         userPositionModel.setUpdateTime(new Date().toString());
         userPositionModel.setSiteId(0);
         userPositionModel.setUserId(global.getUserId());
-        userPositionModel.setMapId(8);
+        userPositionModel.setMapId(mapId);
 
         //调用http接口 补全代码
 
@@ -261,7 +265,7 @@ public class SiteFragment extends Fragment {
 
 
     public void imgInit() {
-        String imgUrl = global.getImgUrl() + "img/yjycad.jpg";
+        String imgUrl = global.getImgUrl() + "img/ywy.jpg";
         GetBitMap.getHttpBitmap(imgUrl, new GetBitMap.Callback() {
             @Override
             public void onSuccess(Bitmap originalBitmap) {
@@ -270,8 +274,8 @@ public class SiteFragment extends Fragment {
                 int originalHeight = originalBitmap.getHeight();
 
                 // 计算缩放后的宽度和高度
-                int scaledWidth = originalWidth * 3; // 三倍缩放
-                int scaledHeight = originalHeight * 3; // 三倍缩放
+                int scaledWidth = originalWidth * 2; // 三倍缩放
+                int scaledHeight = originalHeight * 2; // 三倍缩放
 
                 // 使用三倍缩放创建新的 Bitmap
                 Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, true);
@@ -308,8 +312,6 @@ public class SiteFragment extends Fragment {
                 originalBitmapGlobal = bitmapWithCoordinates;
                 // 将带有坐标信息的 Bitmap 设置给 ImageView
                 binding.imageView.setImageBitmap(bitmapWithCoordinates);
-
-
 
             }
         });
@@ -350,6 +352,23 @@ public class SiteFragment extends Fragment {
         paint.setColor(Color.YELLOW);
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(centerX, centerY, 10, paint); // 绘制一个半径为 10 的黄色圆形
+    }
+
+
+    public static List<WifiSignalModel> filterWifiSignalModels(List<WifiSignalModel> wifilist) {
+        List<WifiSignalModel> filteredList = new ArrayList<>();
+
+        for (WifiSignalModel wifiSignalModel : wifilist) {
+            String macAddress = wifiSignalModel.getSignalMac();
+            // 获取倒数第二个十六进制字符
+            String secondLastChar = macAddress.substring(macAddress.length() - 5, macAddress.length() - 3).toLowerCase();
+            // 检查是否符合条件
+            if (secondLastChar.equals("df") || secondLastChar.equals("e3") || secondLastChar.equals("7a") || secondLastChar.equals("5e")) {
+                filteredList.add(wifiSignalModel);
+            }
+        }
+
+        return filteredList;
     }
 
 

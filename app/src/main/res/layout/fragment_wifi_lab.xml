@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:background="@color/backColor"
         android:padding="30dp"
-        tools:context=".ui.WifiFragment.WifiFragment">
+        tools:context=".ui.WifiFragment.MapFragment.LabMapFragment">
 
 
 
@@ -78,22 +78,40 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-<!--            <Button-->
-<!--                android:id="@+id/button4"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="刷新WIFI数据信息"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/positionButtonXy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="50dp">
+
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="刷新WIFI数据信息"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </LinearLayout>
+
 
 
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="100dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent"

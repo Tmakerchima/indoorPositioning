@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.guhun.locatorapplication07"
-        minSdk 28
+        minSdk 29
         targetSdk 29
         versionCode 1
         versionName "1.0"

@@ -11,18 +11,46 @@
         <item
             android:id="@+id/nav_site"
             android:icon="@drawable/flag"
-            android:title="@string/nav_site" />
+            android:title="@string/nav_site" >
+
+
+
+        <menu> <!-- 添加子菜单 -->
+            <item
+                android:id="@+id/nav_site_lab"
+                android:icon="@drawable/wifi"
+                android:title="实验室定位" />
+            <item
+                android:id="@+id/nav_site_institute"
+                android:icon="@drawable/wifi"
+                android:title="研究院定位" />
+        </menu>
+
+        </item>
+
         <item
             android:id="@+id/nav_wifi"
             android:icon="@drawable/wifi"
-            android:title="@string/navWifi" />
-        <item
-            android:id="@+id/nav_master"
-            android:icon="@drawable/lock_alt"
-            android:title="@string/nav_master" />
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/info"
-            android:title="@string/nav_about" />
+            android:title="@string/navWifi">
+        <menu> <!-- 添加子菜单 -->
+            <item
+                android:id="@+id/nav_lab_map"
+                android:icon="@drawable/wifi"
+                android:title="实验室指纹统计" />
+            <item
+                android:id="@+id/nav_institute_map"
+                android:icon="@drawable/wifi"
+                android:title="研究院指纹统计" />
+        </menu>
+        </item>
+
+<!--        <item-->
+<!--            android:id="@+id/nav_master"-->
+<!--            android:icon="@drawable/lock_alt"-->
+<!--            android:title="@string/nav_master" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_about"-->
+<!--            android:icon="@drawable/info"-->
+<!--            android:title="@string/nav_about" />-->
     </group>
 </menu>
