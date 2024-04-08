@@ -23,7 +23,7 @@ public class WifiManagerGH {
 //    private WifiInfo wifiInfo;          // wifi信息
     private List<ScanResult> wifiList;  // 网络列表，使用时用signalList代替
     private ArrayList<WifiSignalModel> signalList; //信号列表
-    private final double THRESHOLD = -5;
+    private final double THRESHOLD = -2;
 
     public WifiManagerGH(Context context){
         // 获取 WifiManager 实例
@@ -64,75 +64,149 @@ public class WifiManagerGH {
      * @return
      */
     public ArrayList<WifiSignalModel> stHandle(ArrayList<WifiSignalModel> sSignalList, List<PositionEntity> list) {
-        // 梯度筛选
-        Iterator<WifiSignalModel> iterator = sSignalList.iterator();
 
         // 由于只是测试所以传入坐标点为(1,1,1)
-        int signalX = 1;
+        int signalX = 7;
         int signalY = 1;
         int signalZ = 1;
         double distance;
 
+
+        // 筛选df e3 5e 7a
+        // Ap位置
+        List<PositionEntity> positionEntities = new ArrayList<>();
+
+        // 实验室AP点位置信息
+        positionEntities.add(new PositionEntity("48:57:02:18:df", 5, 2, 2.8));// 48:57:02:18:df
+        positionEntities.add(new PositionEntity("48:57:02:18:e3", 5, 6, 2.8));// 48:57:02:18:e3
+        positionEntities.add(new PositionEntity("ac:75:1d:e7:7a", 5, 12, 2.8));// ac:75:1d:e7:7a
+        positionEntities.add(new PositionEntity("ac:75:1d:e7:5e", -3, 6, 2.8));// ac:75:1d:e7:5e
+
+
+        // 当前地图只筛选df 5e e3 7a的值
+        Iterator<WifiSignalModel> iteratorModel = sSignalList.iterator();
+        while (iteratorModel.hasNext()) {
+            WifiSignalModel wifiSignalModel = iteratorModel.next();
+            String macAddress = wifiSignalModel.getSignalMac();
+            if (null == macAddress) {
+                continue;
+            }
+            String firstFiveParts = extractFirstFiveParts(macAddress);
+
+            if (null!=firstFiveParts) {
+                boolean shouldRemove = true;
+                for (PositionEntity entity : positionEntities) {
+                    if (entity.getFeature().equals(firstFiveParts)) {
+                        shouldRemove = false;
+                        break;
+                    }
+                }
+                if (shouldRemove) {
+                    iteratorModel.remove();
+                }
+            } else {
+                iteratorModel.remove();
+            }
+        }
+
+        // 梯度筛选
+        Iterator<WifiSignalModel> iterator = sSignalList.iterator();
         while (iterator.hasNext()) {
             WifiSignalModel wifiDbmModel = iterator.next();
             String macAddress = wifiDbmModel.getSignalMac();
-            String[] parts = macAddress.split(":");
-            String secondLastPart = null;
+            String firstFiveParts = extractFirstFiveParts(macAddress);
 
-            if (parts.length >= 2) {
-                secondLastPart = parts[parts.length - 2];
-            }
-            for(PositionEntity entity:list){
-                if(entity.getFeature().equals(secondLastPart)){
-                    // 计算欧几里得距离
-                    distance = Math.sqrt(Math.pow(entity.getX() - signalX, 2) +
-                            Math.pow(entity.getY() - signalY, 2) +
-                            Math.pow(entity.getZ() - signalZ, 2));
-                    // n代表电磁波消耗率
-                    double n = 3.5;
-                    //斜率
-                    double px = -10 * (n / distance) / Math.log(10);
-                    if(px>THRESHOLD){
-                        iterator.remove();
+            if(null!=firstFiveParts){
+                for(PositionEntity entity:list){
+                    if(entity.getFeature().equals(firstFiveParts)){
+                        // 计算欧几里得距离
+                        distance = Math.sqrt(Math.pow(entity.getX() - signalX, 2) +
+                                Math.pow(entity.getY() - signalY, 2) +
+                                Math.pow(entity.getZ() - signalZ, 2));
+                        // n代表电磁波消耗率
+                        double n = 3.5;
+                        //斜率
+                        double px = -10 * (n / distance) / Math.log(10);
+                        if(px>THRESHOLD){
+                            iterator.remove();
+                        }
                     }
                 }
             }
+
         }
         signalList = sSignalList;
         return signalList;
     }
 
     public ArrayList<WifiSignalModel> stHandle(ArrayList<WifiSignalModel> sSignalList, List<PositionEntity> list, int x,int y) {
-        // 梯度筛选
-        Iterator<WifiSignalModel> iterator = sSignalList.iterator();
+
 
         // 由于只是测试所以传入坐标点为(1,1,1)
         int signalX = x;
         int signalY = y;
         int signalZ = 1;
         double distance;
+        List<Double> listD = new ArrayList<>();
 
+        // 筛选df e3 5e 7a
+        // Ap位置
+        List<PositionEntity> positionEntities = new ArrayList<>();
+
+        // 实验室AP点位置信息
+        positionEntities.add(new PositionEntity("48:57:02:18:df", 5, 2, 2.8));// 48:57:02:18:df
+        positionEntities.add(new PositionEntity("48:57:02:18:e3", 5, 6, 2.8));// 48:57:02:18:e3
+        positionEntities.add(new PositionEntity("ac:75:1d:e7:7a", 5, 12, 2.8));// ac:75:1d:e7:7a
+        positionEntities.add(new PositionEntity("ac:75:1d:e7:5e", -3, 6, 2.8));// ac:75:1d:e7:5e
+
+
+        // 当前地图只筛选df 5e e3 7a的值
+        Iterator<WifiSignalModel> iteratorModel = sSignalList.iterator();
+        while (iteratorModel.hasNext()) {
+            WifiSignalModel wifiSignalModel = iteratorModel.next();
+            String macAddress = wifiSignalModel.getSignalMac();
+            if (null == macAddress) {
+                continue;
+            }
+            String firstFiveParts = extractFirstFiveParts(macAddress);
+
+            if (null!=firstFiveParts) {
+                boolean shouldRemove = true;
+                for (PositionEntity entity : positionEntities) {
+                    if (entity.getFeature().equals(firstFiveParts)) {
+                        shouldRemove = false;
+                        break;
+                    }
+                }
+                if (shouldRemove) {
+                    iteratorModel.remove();
+                }
+            } else {
+                iteratorModel.remove();
+            }
+        }
+
+        // 梯度筛选
+        Iterator<WifiSignalModel> iterator = sSignalList.iterator();
         while (iterator.hasNext()) {
             WifiSignalModel wifiDbmModel = iterator.next();
             String macAddress = wifiDbmModel.getSignalMac();
-            String[] parts = macAddress.split(":");
-            String secondLastPart = null;
-
-            if (parts.length >= 2) {
-                secondLastPart = parts[parts.length - 2];
-            }
-            for(PositionEntity entity:list){
-                if(entity.getFeature().equals(secondLastPart)){
-                    // 计算欧几里得距离
-                    distance = Math.sqrt(Math.pow(entity.getX() - signalX, 2) +
-                            Math.pow(entity.getY() - signalY, 2) +
-                            Math.pow(entity.getZ() - signalZ, 2));
-                    // n代表电磁波消耗率
-                    double n = 3.5;
-                    //斜率
-                    double px = -10 * (n / distance) / Math.log(10);
-                    if(px>THRESHOLD){
-                        iterator.remove();
+            String firstFiveParts = extractFirstFiveParts(macAddress);
+            if(null!=firstFiveParts){
+                for(PositionEntity entity:list){
+                    if(entity.getFeature().equals(firstFiveParts)){
+                        // 计算欧几里得距离
+                        distance = Math.sqrt(Math.pow(entity.getX() - signalX, 2) +
+                                Math.pow(entity.getY() - signalY, 2) +
+                                Math.pow(entity.getZ() - signalZ, 2));
+                        // n代表电磁波消耗率
+                        double n = 3.5;
+                        //斜率
+                        double px = -10 * (n / distance) / Math.log(10);
+                        listD.add(px);
+                        if(px>THRESHOLD){
+                            iterator.remove();
+                        }
                     }
                 }
             }
@@ -155,4 +229,25 @@ public class WifiManagerGH {
     public ArrayList<WifiSignalModel> getSignalList() {
         return signalList;
     }
+
+
+
+    public static String extractFirstFiveParts(String macAddress) {
+        // 使用冒号分割MAC地址
+        String[] parts = macAddress.split(":");
+        // 如果部分数量小于五个，则返回null
+        if (parts.length < 5) {
+            return null;
+        }
+        StringBuilder builder = new StringBuilder();
+        // 将前五个部分拼接起来
+        for (int i = 0; i < 5; i++) {
+            builder.append(parts[i]);
+            if (i < 4) {
+                builder.append(":");
+            }
+        }
+        return builder.toString();
+    }
+
 }

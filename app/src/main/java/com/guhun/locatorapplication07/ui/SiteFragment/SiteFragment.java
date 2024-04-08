@@ -83,7 +83,7 @@ public class SiteFragment extends Fragment {
 
     private boolean isTimerRunning = false;
 
-    private int mapId = 10;
+    private int mapId = 11;
 
 
     private static final String WS_URL = "wss://wifilocation-release.lecangs.com/locator_server/data-websocket";
@@ -140,7 +140,7 @@ public class SiteFragment extends Fragment {
 
     public void location(int mapId,int siteId){
         wifiManagerGH = new WifiManagerGH(getContext());
-        wifiManagerGH.initSignalList(50,0);
+        wifiManagerGH.initSignalList(200,0);
 
         ArrayList<WifiSignalModel> wifilist = wifiManagerGH.getSignalList();
 //        List<WifiSignalModel> filteredMacAddresses = filterWifiSignalModels(wifilist);
@@ -265,7 +265,7 @@ public class SiteFragment extends Fragment {
 
 
     public void imgInit() {
-        String imgUrl = global.getImgUrl() + "img/ywy.jpg";
+        String imgUrl = global.getImgUrl() + "img/20240407.jpg";
         GetBitMap.getHttpBitmap(imgUrl, new GetBitMap.Callback() {
             @Override
             public void onSuccess(Bitmap originalBitmap) {
@@ -274,7 +274,7 @@ public class SiteFragment extends Fragment {
                 int originalHeight = originalBitmap.getHeight();
 
                 // 计算缩放后的宽度和高度
-                int scaledWidth = originalWidth * 2; // 三倍缩放
+                int scaledWidth = originalWidth * 1; // 三倍缩放
                 int scaledHeight = originalHeight * 2; // 三倍缩放
 
                 // 使用三倍缩放创建新的 Bitmap
@@ -295,12 +295,12 @@ public class SiteFragment extends Fragment {
                 paint.setTextSize(20);
 
                 // 计算单元格的宽度和高度
-                int cellWidth = scaledWidth / 7;  // 假设横向最大值为7
-                int cellHeight = scaledHeight / 15;  // 假设纵向最大值为15
+                int cellWidth = scaledWidth / 9;  // 假设横向最大值为7
+                int cellHeight = scaledHeight / 8;  // 假设纵向最大值为15
 
                 // 绘制坐标信息
-                for (int x = 1; x <= 7; x++) { // 从1开始
-                    for (int y = 1; y <= 15; y++) { // 从1开始
+                for (int x = 1; x <= 9; x++) { // 从1开始
+                    for (int y = 1; y <= 8; y++) { // 从1开始
                         String coordinate = "(" + x + ", " + y + ")";
                         float textWidth = paint.measureText(coordinate);
                         float textHeight = paint.getTextSize();
@@ -331,10 +331,10 @@ public class SiteFragment extends Fragment {
         Canvas canvas = new Canvas(bitmapWithoutMarker);
 
         // 计算标记点的中心位置
-        int imageX = (int) ((x - 1) * imageViewWidth / 7); // 假设横向最大值为7
-        int imageY = (int) ((y - 1) * imageViewHeight / 15); // 假设纵向最大值为15
-        int centerX = imageX + imageViewWidth / 14; // 在格子中心绘制标记
-        int centerY = imageY + imageViewHeight / 30; // 在格子中心绘制标记
+        int imageX = (int) ((x-1) * imageViewWidth / 9); // 假设横向最大值为 9
+        int imageY = (int) ((y-1) * imageViewHeight / 8); // 假设纵向最大值为 8
+        int centerX = imageX + imageViewWidth / 18; // 在格子中心绘制标记
+        int centerY = imageY + imageViewHeight / 16; // 在格子中心绘制标记
 
         // 绘制原始图片
         canvas.drawBitmap(originalBitmap, 0, 0, null);

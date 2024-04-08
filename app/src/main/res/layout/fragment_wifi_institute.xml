@@ -188,31 +188,44 @@
             android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="550dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:layout_editor_absoluteX="30dp">
+            tools:layout_editor_absoluteX="44dp">
+
+
+<!--            <Button-->
+<!--                android:id="@+id/button4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="刷新数据信息"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                tools:layout_editor_absoluteY="358dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/button5"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="录入数据信息"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                tools:layout_editor_absoluteY="359dp" />-->
+
 
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="刷新数据信息"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.867"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="358dp" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="录入数据信息"
+                android:text="分析数据"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="359dp" />
+
 
 
         </LinearLayout>
